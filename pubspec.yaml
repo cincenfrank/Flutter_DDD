@@ -1,0 +1,47 @@
+name: resolly
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  auto_route: ^2.3.0
+  cloud_firestore: ^2.4.0
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.0-nullsafety.2
+  firebase_analytics: ^8.2.0
+  firebase_auth: ^3.0.1
+  firebase_core: ^1.4.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^7.1.0
+  flutter_hooks: ^0.18.0
+  flutter_slidable: ^0.6.0
+  freezed_annotation: ^0.14.0
+  get_it: ^7.2.0
+  google_sign_in: ^5.0.7
+  implicitly_animated_reorderable_list: ^0.4.0
+  injectable: ^1.4.1
+  json_annotation: ^4.0.1
+  kt_dart: ^0.9.1
+  provider: ^5.0.0
+  rxdart: ^0.27.1
+  uuid: ^3.0.4
+
+dev_dependencies:
+  auto_route_generator: ^2.1.0
+  build_runner: 2.1.1
+  flutter_test:
+    sdk: flutter
+  freezed: ^0.14.0
+  injectable_generator: ^1.4.1
+  json_serializable: ^4.1.4
+  lint: ^1.5.3
+
+flutter:
+
+  uses-material-design: true
