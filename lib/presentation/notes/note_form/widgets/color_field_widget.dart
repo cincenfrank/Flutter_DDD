@@ -33,9 +33,14 @@ class ColorField extends StatelessWidget {
                           (color) => color == itemColor
                               ? const BorderSide(width: 1.5)
                               : BorderSide.none)),
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 50,
                     width: 50,
+                    child: state.note.color.value.fold(
+                        (_) => null,
+                        (color) => color == itemColor
+                            ? const Icon(Icons.check)
+                            : null),
                   ),
                 ),
               );

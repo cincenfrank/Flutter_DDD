@@ -136,6 +136,7 @@ class NoteFormPageScaffold extends StatelessWidget {
                     ? AutovalidateMode.always
                     : AutovalidateMode.disabled,
                 child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: const [
                       BodyField(),

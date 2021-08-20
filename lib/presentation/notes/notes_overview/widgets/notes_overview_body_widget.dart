@@ -19,6 +19,7 @@ class NotesOverviewBody extends StatelessWidget {
         ),
         loadSuccess: (s) {
           return ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
             itemCount: s.notes.size,
             itemBuilder: (context, index) {
               final note = s.notes[index];
