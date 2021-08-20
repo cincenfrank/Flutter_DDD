@@ -15,48 +15,31 @@ class TodoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<NoteFormBloc, NoteFormState>(
-      listenWhen: (p, c) => p.note.todos.isFull != c.note.todos.isFull,
-      listener: (context, state) {
-        if (state.note.todos.isFull) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: const Text('Want longer? Activate premium 😍'),
-            action: SnackBarAction(
-              label: 'BUY NOW',
-              onPressed: () {},
-            ),
-          ));
-        }
-      },
-      child: Consumer<FormTodos>(
-        builder: (context, formTodos, child) {
-          return ImplicitlyAnimatedReorderableList<TodoItemPrimitive>(
-              areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
-              removeDuration: const Duration(),
-              onReorderFinished: (item, from, to, newItems) {
-                context.formTodos = newItems.toImmutableList();
-                context
-                    .read<NoteFormBloc>()
-                    .add(NoteFormEvent.todosChanged(context.formTodos));
-              },
-              shrinkWrap: true,
-              // removeDuration: const Duration(microseconds: 50),
-              items: formTodos.value.asList(),
-              itemBuilder: (context, itemAnimation, item, index) => Reorderable(
-                    key: Key(item.id.getOrCrash()),
-                    builder: (context, animation, inDrag) => ScaleTransition(
-                      scale:
-                          Tween<double>(begin: 1, end: 0.95).animate(animation),
-                      child: TodoTile(
-                        index: index,
-                        elevation: animation.value * 4,
-                      ),
+    return Consumer<FormTodos>(
+      builder: (context, formTodos, child) {
+        return ImplicitlyAnimatedReorderableList<TodoItemPrimitive>(
+            areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
+            removeDuration: const Duration(),
+            onReorderFinished: (item, from, to, newItems) {
+              context.formTodos = newItems.toImmutableList();
+              context
+                  .read<NoteFormBloc>()
+                  .add(NoteFormEvent.todosChanged(context.formTodos));
+            },
+            shrinkWrap: true,
+            items: formTodos.value.asList(),
+            itemBuilder: (context, itemAnimation, item, index) => Reorderable(
+                  key: Key(item.id.getOrCrash()),
+                  builder: (context, animation, inDrag) => ScaleTransition(
+                    scale:
+                        Tween<double>(begin: 1, end: 0.95).animate(animation),
+                    child: TodoTile(
+                      index: index,
+                      elevation: animation.value * 4,
                     ),
-                  ));
-        },
-      ),
+                  ),
+                ));
+      },
     );
   }
 }
